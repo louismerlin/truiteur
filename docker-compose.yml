@@ -1,0 +1,17 @@
+version: '2'
+services:
+  nginx:
+    build: ./nginx
+    depends_on:
+     - web
+     - api
+    ports:
+     - "8080:80"
+  web:
+    build: ./web
+    ports:
+     - "8080"
+  api:
+    build: ./api
+    ports: 
+     - "8080"
