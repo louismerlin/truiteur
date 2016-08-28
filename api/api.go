@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-    http.HandleFunc("/truite", func(w http.ResponseWriter, r *http.Request) {
+    http.HandleFunc("/api/truite", func(w http.ResponseWriter, r *http.Request) {
         if r.Method == "POST" {
 			addTruite(r.PostForm)
 		} else if r.Method == "GET" {
