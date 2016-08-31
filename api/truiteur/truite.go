@@ -1,14 +1,19 @@
 package truiteur
 
+import (
+  "fmt"
+  "net/url"
+)
+
 type Truite struct {
 	Id   int    `json:"id"`
 	Body string `json:"body"`
 }
 
-func addTruite(data url.Values) {
+func AddTruite(data url.Values) {
 	fmt.Printf("Post!")
 }
 
-func getTruite() Truite {
+func GetTruite() Truite {
 	return Truite{Id: 1, Body: "Hello, world!"}
 }
