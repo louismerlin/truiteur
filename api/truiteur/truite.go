@@ -1,8 +1,8 @@
 package truiteur
 
 import (
-  "fmt"
-  "net/url"
+	"fmt"
+	"net/url"
 )
 
 type Truite struct {
