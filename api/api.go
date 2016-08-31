@@ -1,34 +1,34 @@
 package main
 
 import (
-    "fmt"
-    "log"
-    "net/url"
-    "net/http"
-    "encoding/json"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"net/url"
 )
 
 func main() {
-    http.HandleFunc("/api/truite", func(w http.ResponseWriter, r *http.Request) {
-        if r.Method == "POST" {
+	http.HandleFunc("/api/truite", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == "POST" {
 			addTruite(r.PostForm)
 		} else if r.Method == "GET" {
 			if err := json.NewEncoder(w).Encode(getTruite()); err != nil {
 				panic(err)
 			}
 		}
-    })
+	})
 
-    log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 
 }
 
 type Truite struct {
-	Id 		int		`json:"id"`
-	Body 	string	`json:"body"`
+	Id   int    `json:"id"`
+	Body string `json:"body"`
 }
 
-func addTruite(data url.Values){
+func addTruite(data url.Values) {
 	fmt.Printf("Post!")
 }
 
@@ -37,5 +37,3 @@ func getTruite() Truite {
 }
 
 type Truites []Truite
-
-
