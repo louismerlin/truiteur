@@ -14,6 +14,6 @@ func AddTruite(data url.Values) {
 	fmt.Printf("Post!")
 }
 
-func GetTruite() Truite {
+func GetTruite(data url.Values) Truite {
 	return Truite{Id: 1, Body: "Hello, world!"}
 }

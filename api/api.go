@@ -12,7 +12,7 @@ func main() {
 		if r.Method == "POST" {
 			truiteur.AddTruite(r.PostForm)
 		} else if r.Method == "GET" {
-			if err := json.NewEncoder(w).Encode(truiteur.GetTruite()); err != nil {
+			if err := json.NewEncoder(w).Encode(truiteur.GetTruite(r.PostForm)); err != nil {
 				panic(err)
 			}
 		}

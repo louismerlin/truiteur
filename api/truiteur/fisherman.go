@@ -1,19 +1,24 @@
 package truiteur
 
 import (
-  "fmt"
-  "golang.org/x/crypto/bcrypt"
-  "time"
-)
+	"fmt"
+	"net/url"
+	//"net/http"
 	"golang.org/x/crypto/bcrypt"
 )
 
-var fishermen := [2]Fisherman{new Fisherman{Othman, Ben, nil}, new Fisherman{Louis, Mer, nil}}
+var fishermen [2]Fisherman
 
 type Fisherman struct {
-	Username   	string  `json:"username"`
-	Password 	string 	`json:"password"`
-	Truites		Truite[] `json:"truites"`
+	Username string   `json:"username"`
+	Password string   `json:"password"`
+	Truites  []Truite `json:"truites"`
+}
+
+//For test purpose
+func addFisherman() {
+	fishermen[0] = Fisherman{"Othman", "Ben", nil}
+	fishermen[1] = Fisherman{"Louis", "Mer", nil}
 }
 
 func AddFisherman(data url.Values) {
@@ -21,20 +26,17 @@ func AddFisherman(data url.Values) {
 }
 
 func encryptPassword(password string) string {
-	pswd := []byte(password)
-
-	hashedPassword, err := bcrypt.GenerateFromPassword(pswd, bcrypt.DefaultCost)
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		panic(err)
 	}
-
-	return hasehdPassword
+	return string(hashedPassword)
 }
 
-func login(/*toutcequilfaut httpmachin*/) {
-  // accéder au username : req.PostFormValue("username")
+/*func login( toutcequilfaut httpmachin ) {
+	// accéder au username : req.PostFormValue("username")
 
-  // IF LOGIN SUCCESSFUL
-  http.SetCookie(res, &cookie)
+	// IF LOGIN SUCCESSFUL
+	http.SetCookie(res, &cookie)
 	http.Redirect(res, req, "/", 301)
-}
+}*/
