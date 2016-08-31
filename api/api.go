@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"app/truiteur"
 )
 
 func main() {
@@ -20,20 +21,4 @@ func main() {
 	})
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
-
 }
-
-type Truite struct {
-	Id   int    `json:"id"`
-	Body string `json:"body"`
-}
-
-func addTruite(data url.Values) {
-	fmt.Printf("Post!")
-}
-
-func getTruite() Truite {
-	return Truite{Id: 1, Body: "Hello, world!"}
-}
-
-type Truites []Truite
