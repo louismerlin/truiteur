@@ -1,6 +1,11 @@
 package truiteur
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"fmt"
+	"golang.org/x/crypto/bcrypt"
+)
+
+var fishermen := [2]Fisherman{new Fisherman{Othman, Ben, nil}, new Fisherman{Louis, Mer, nil}}
 
 type Fisherman struct {
 	Username   	string  `json:"username"`
@@ -9,7 +14,7 @@ type Fisherman struct {
 }
 
 func AddFisherman(data url.Values) {
-	
+	fmt.Printf("New user!")
 }
 
 func encryptPassword(password string) string {
