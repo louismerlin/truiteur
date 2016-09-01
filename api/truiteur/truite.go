@@ -12,9 +12,9 @@ type Truite struct {
 
 func ApiTruite(res http.ResponseWriter, req *http.Request) {
     if req.Method == "POST" {
-      truiteur.AddTruite(r.PostForm)
+      truiteur.addTruite(r.PostForm)
     } else if req.Method == "GET" {
-      if err := json.NewEncoder(w).Encode(truiteur.GetTruite(r.PostForm)); err != nil {
+      if err := json.NewEncoder(w).Encode(truiteur.getTruite(r.PostForm)); err != nil {
         panic(err)
       }
     }
@@ -23,10 +23,10 @@ func ApiTruite(res http.ResponseWriter, req *http.Request) {
 }
 
 
-func AddTruite(data url.Values) {
-	fmt.Printf("Post!")
+func addTruite(data url.Values) {
+	fmt.Printf("Post truite !")
 }
 
-func GetTruite(data url.Values) Truite {
+func getTruite(data url.Values) Truite {
 	return Truite{Id: 1, Body: "Hello, world!"}
 }
