@@ -34,14 +34,13 @@ func encryptPassword(password string) string {
 }
 
 func login(res http.ResponseWriter, req *http.Request) {
-	// accéder au username : req.PostFormValue("username")
-
 	login := false;
 	
 	for i := 0; i < 2; i++ {
 		if fishermen[i].Username ==  req.PostFormValue("username") {
 			login = true;
 			if fishermen[i].Password == encryptPassword(req.PostFormValue("password")) {
+				cookie := loginCookie(fishermen[i].Username)
 				http.SetCookie(res, &cookie)
 				http.Redirect(res, req, "/", 301)
 			} else {
