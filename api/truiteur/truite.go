@@ -24,8 +24,11 @@ func ApiTruite(res http.ResponseWriter, req *http.Request) {
 
 func AddTruite(data url.Values) {
 	fmt.Printf("Post!")
+
+func addTruite(data url.Values) {
+	fmt.Printf("Post truite !")
 }
 
-func GetTruite(data url.Values) Truite {
+func getTruite(data url.Values) Truite {
 	return Truite{Id: 1, Body: "Hello, world!"}
 }
