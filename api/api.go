@@ -8,15 +8,10 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/api/truite", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == "POST" {
-			truiteur.AddTruite(r.PostForm)
-		} else if r.Method == "GET" {
-			if err := json.NewEncoder(w).Encode(truiteur.GetTruite(r.PostForm)); err != nil {
-				panic(err)
-			}
-		}
-	})
-
+	http.HandleFunc("/", truiteur.Validate(truiteur.HomePage))
+	http.HandleFunc("/login", truiteur.Login)
+	http.HandleFunc("/signup", truiteur.Signup)
+	http.HandleFunc("/api/truite", truiteur.Validate(truiteur.ApiTruite))
+	http.HandleFunc("/api/fisherman", truiteur.Validate(truiteur.ApiFisherman))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

@@ -15,6 +15,18 @@ type Fisherman struct {
 	Truites  []Truite `json:"truites"`
 }
 
+func ApiFisherman(res http.ResponseWriter, req *http.Request) {
+    if req.Method == "POST" {
+      truiteur.AddTruite(r.PostForm)
+    } else if req.Method == "GET" {
+      if err := json.NewEncoder(w).Encode(truiteur.GetTruite(r.PostForm)); err != nil {
+        panic(err)
+      }
+    }
+  })
+
+}
+
 //For test purpose
 func addFisherman() {
 	fishermen[0] = Fisherman{"Othman", "Ben", nil}
