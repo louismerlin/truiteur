@@ -3,7 +3,7 @@ package truiteur
 import (
 	"fmt"
 	"net/url"
-	//"net/http"
+	"net/http"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -45,10 +45,23 @@ func encryptPassword(password string) string {
 	return string(hashedPassword)
 }
 
-/*func login( toutcequilfaut httpmachin ) {
-	// accéder au username : req.PostFormValue("username")
-
-	// IF LOGIN SUCCESSFUL
-	http.SetCookie(res, &cookie)
-	http.Redirect(res, req, "/", 301)
-}*/
+func login(res http.ResponseWriter, req *http.Request) {
+	login := false;
+	
+	for i := 0; i < 2; i++ {
+		if fishermen[i].Username ==  req.PostFormValue("username") {
+			login = true;
+			if fishermen[i].Password == encryptPassword(req.PostFormValue("password")) {
+				cookie := loginCookie(fishermen[i].Username)
+				http.SetCookie(res, &cookie)
+				http.Redirect(res, req, "/", 301)
+			} else {
+				fmt.Printf("You've entered the wrong password, please try again!")
+			}
+		}
+	}
+	
+	if login == false {
+		fmt.Printf("There is no such username, please try again")
+	}
+}
