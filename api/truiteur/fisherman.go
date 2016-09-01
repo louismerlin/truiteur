@@ -45,9 +45,9 @@ func encryptPassword(password string) string {
 	return string(hashedPassword)
 }
 
-func login(res http.ResponseWriter, req *http.Request) {
+func Login(res http.ResponseWriter, req *http.Request) {
 	login := false;
-	
+
 	for i := 0; i < 2; i++ {
 		if fishermen[i].Username ==  req.PostFormValue("username") {
 			login = true;
@@ -60,8 +60,12 @@ func login(res http.ResponseWriter, req *http.Request) {
 			}
 		}
 	}
-	
+
 	if login == false {
 		fmt.Printf("There is no such username, please try again")
 	}
+}
+
+func Signup(res http.ResponseWriter, req *http.Request) {
+  fmt.Printf("THIS IS A PRIVATE CLUB GET OUT")
 }
