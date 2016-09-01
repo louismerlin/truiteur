@@ -27,9 +27,9 @@ func ApiFisherman(res http.ResponseWriter, req *http.Request) {
 }
 
 //For test purpose
-func addFisherman() {
-	fishermen[0] = Fisherman{"Othman", "Ben", nil}
-	fishermen[1] = Fisherman{"Louis", "Mer", nil}
+func AddFishermanTest() {
+	fishermen[0] = Fisherman{"Othman", encryptPassword("Ben"), nil}
+	fishermen[1] = Fisherman{"Louis", encryptPassword("Mer"), nil}
 }
 
 func AddFisherman(data url.Values) {
@@ -38,6 +38,7 @@ func AddFisherman(data url.Values) {
 
 func encryptPassword(password string) string {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+  fmt.Println(string(hashedPassword))
 	if err != nil {
 		panic(err)
 	}
@@ -45,17 +46,18 @@ func encryptPassword(password string) string {
 }
 
 func Login(res http.ResponseWriter, req *http.Request) {
+  fmt.Println(fishermen[0].Username)
+  fmt.Println("LOGIN!!")
 	login := false;
-
 	for i := 0; i < 2; i++ {
 		if fishermen[i].Username ==  req.PostFormValue("username") {
 			login = true;
-			if fishermen[i].Password == encryptPassword(req.PostFormValue("password")) {
+			if bcrypt.CompareHashAndPassword([]byte(fishermen[i].Password), []byte(req.PostFormValue("password"))) == nil {
 				cookie := loginCookie(fishermen[i].Username)
 				http.SetCookie(res, &cookie)
 				http.Redirect(res, req, "/", 301)
 			} else {
-				fmt.Printf("You've entered the wrong password, please try again!")
+				fmt.Println("You've entered the wrong password, please try again!")
 			}
 		}
 	}

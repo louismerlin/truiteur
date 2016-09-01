@@ -15,6 +15,8 @@ type TruiteurClaims struct {
 	jwt.StandardClaims
 }
 
+func HomePage(res http.ResponseWriter, req *http.Request) {}
+
 func loginCookie(username string) http.Cookie {
 	expireToken := time.Now().Add(time.Hour * 24).Unix()
 	expireCookie := time.Now().Add(time.Hour * 24)
@@ -35,7 +37,7 @@ func loginCookie(username string) http.Cookie {
 
 }
 
-func validate(protectedPage http.HandlerFunc) http.HandlerFunc {
+func Validate(protectedPage http.HandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 
 		cookie, err := req.Cookie("Auth")
