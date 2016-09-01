@@ -1,13 +1,13 @@
 package truiteur
 
 import (
-	"github.com/dgrijalva/jwt-go"
+	"fmt"
+	"time"
+	"strings"
+	"net/http"
+	
 	"github.com/gorilla/context"
-
-  "time"
-  "net/http"
-  "strings"
-  "fmt"
+	"github.com/dgrijalva/jwt-go"
 )
 
 type TruiteurClaims struct {

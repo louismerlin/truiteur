@@ -3,8 +3,8 @@ package truiteur
 import (
 	"fmt"
 	"net/url"
-  "net/http"
-  "encoding/json"
+	"net/http"
+	"encoding/json"
 )
 
 type Truite struct {
@@ -13,15 +13,17 @@ type Truite struct {
 }
 
 func ApiTruite(res http.ResponseWriter, req *http.Request) {
-  if req.Method == "POST" {
-    addTruite(req.PostForm)
-  } else if req.Method == "GET" {
-    if err := json.NewEncoder(res).Encode(getTruite(req.PostForm)); err != nil {
-      panic(err)
-    }
-  }
+    if req.Method == "POST" {
+      AddTruite(req.PostForm)
+    } else if req.Method == "GET" {
+      if err := json.NewEncoder(res).Encode(GetTruite(req.PostForm)); err != nil {
+        panic(err)
+      }
+	}
 }
 
+func AddTruite(data url.Values) {
+	fmt.Printf("Post!")
 
 
 func addTruite(data url.Values) {
