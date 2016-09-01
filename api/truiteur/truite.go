@@ -14,20 +14,16 @@ type Truite struct {
 
 func ApiTruite(res http.ResponseWriter, req *http.Request) {
     if req.Method == "POST" {
-      AddTruite(req.PostForm)
+      addTruite(req.PostForm)
     } else if req.Method == "GET" {
-      if err := json.NewEncoder(res).Encode(GetTruite(req.PostForm)); err != nil {
+      if err := json.NewEncoder(res).Encode(getTruite(req.PostForm)); err != nil {
         panic(err)
       }
 	}
 }
 
-func AddTruite(data url.Values) {
-	fmt.Printf("Post!")
-
-
 func addTruite(data url.Values) {
-	fmt.Printf("Post truite !")
+	fmt.Printf("Post!")
 }
 
 func getTruite(data url.Values) Truite {
