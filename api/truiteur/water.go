@@ -3,6 +3,11 @@ package truiteur
 import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/context"
+
+  "time"
+  "net/http"
+  "strings"
+  "fmt"
 )
 
 type TruiteurClaims struct {
@@ -10,7 +15,7 @@ type TruiteurClaims struct {
 	jwt.StandardClaims
 }
 
-func loginCookie(string username) http.Cookie {
+func loginCookie(username string) http.Cookie {
 	expireToken := time.Now().Add(time.Hour * 24).Unix()
 	expireCookie := time.Now().Add(time.Hour * 24)
 
