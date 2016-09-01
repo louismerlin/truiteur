@@ -25,6 +25,7 @@ func ApiTruite(res http.ResponseWriter, req *http.Request) {
 func AddTruite(data url.Values) {
 	fmt.Printf("Post!")
 
+
 func addTruite(data url.Values) {
 	fmt.Printf("Post truite !")
 }
